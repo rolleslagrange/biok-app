@@ -1,15 +1,16 @@
 import { initializeApp } from 'firebase/app';
-import { 
-  getFirestore, 
-  collection, 
-  getDocs, 
-  setDoc, 
-  doc, 
-  updateDoc, 
-  deleteDoc, 
-  query, 
-  orderBy,
-  enableIndexedDbPersistence
+import {
+  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy
 } from 'firebase/firestore';
 import { Item } from '../types';
 
@@ -25,16 +26,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // HABILITAR PERSISTENCIA OFFLINE (Clave para PWA)
-// Esto permite que la app funcione sin internet usando la caché local
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code == 'failed-precondition') {
-    console.warn('BIOK: Múltiples pestañas abiertas. La persistencia solo funciona en una.');
-  } else if (err.code == 'unimplemented') {
-    console.warn('BIOK: El navegador no soporta persistencia offline.');
-  }
+// Nueva sintaxis para Firebase v9+ para evitar warning de deprecación
+const db = initializeFirestore(app, {
+  localCache: persistentLocalCache()
 });
 
 // Collection Names
@@ -44,21 +40,21 @@ const COL_COMER = 'comer';
 export const getItems = async (mode: 'planes' | 'comer'): Promise<Item[]> => {
   try {
     const colRef = collection(db, mode === 'planes' ? COL_PLANES : COL_COMER);
-    const q = query(colRef, orderBy('createdAt', 'desc')); 
-    
+    const q = query(colRef, orderBy('createdAt', 'desc'));
+
     // Si estamos offline, esto leerá de la caché automáticamente
     const snapshot = await getDocs(q);
-    
+
     const items: Item[] = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     } as Item));
-    
+
     return items;
   } catch (error: any) {
     console.error("Error fetching items from Firebase:", error);
     if (error.code === 'permission-denied') {
-        alert("⚠️ Error de Permisos: Ve a Firebase Console > Firestore > Reglas y cambia 'allow read, write: if false;' por 'if true;'");
+      alert("⚠️ Error de Permisos: Ve a Firebase Console > Firestore > Reglas y cambia 'allow read, write: if false;' por 'if true;'");
     }
     return [];
   }
