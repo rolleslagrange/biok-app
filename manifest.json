@@ -3,8 +3,8 @@
   "short_name": "BIOK",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#111827",
-  "theme_color": "#111827",
+  "background_color": "#FDFBF7",
+  "theme_color": "#292524",
   "description": "Gestor de planes y restaurantes privado.",
   "orientation": "portrait",
   "icons": [

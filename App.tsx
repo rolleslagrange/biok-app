@@ -9,6 +9,7 @@ import { CatalogView } from './views/CatalogView';
 import { DetailView } from './views/DetailView';
 import { SettingsView } from './views/SettingsView';
 import { ProposalView } from './views/ProposalView';
+import { ThemeController } from './components/ThemeController';
 
 // Context for Mode
 interface ModeContextType {
@@ -36,14 +37,12 @@ const App: React.FC = () => {
     setModeState(newMode);
   };
 
-  // Add global class for theme specific styling if needed outside React
-  useEffect(() => {
-    document.body.className = mode === 'planes' ? 'theme-planes' : 'theme-comer';
-  }, [mode]);
+  // ThemeController manages the global styles and meta tags
 
   return (
     <ModeContext.Provider value={{ mode, toggleMode, setMode }}>
       <HashRouter>
+        <ThemeController />
         <Layout>
           <Routes>
             <Route path="/" element={<WelcomeView />} />
