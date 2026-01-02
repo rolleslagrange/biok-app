@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Planes (Default) - Cool Gray/Blueish */
+    --color-background: 17 24 39;     /* Gray 900 */
+    --color-surface: 31 41 55;        /* Gray 800 */
+    --color-line: 51 65 85;           /* Slate 700 */
+    --color-toggle: 15 23 42;         /* Slate 900 */
+  }
+
+  body.theme-comer {
+    /* Comer - Warm Gray/Orangeish */
+    --color-background: 31 25 22;     /* Warm Dark Background */
+    --color-surface: 55 44 39;        /* Warm Surface */
+    --color-line: 82 70 65;           /* Stone/Warm Brown */
+    --color-toggle: 23 18 15;         /* Very Dark Warm Gray */
+  }
+
+  body {
+    @apply bg-[rgb(var(--color-background))] text-[#F9FAFB] font-sans antialiased;
+    overscroll-behavior-y: none; /* Prevent pull-to-refresh on mobile */
+    transition: background-color 0.3s ease;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for clean UI */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

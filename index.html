@@ -12,75 +12,6 @@
   <link rel="icon" type="image/svg+xml" href="/icon.svg">
   <link rel="apple-touch-icon" href="/icon-192.png">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      /* Planes (Default) - Cool Gray/Blueish */
-      --color-background: 17 24 39;
-      /* Gray 900 */
-      --color-surface: 31 41 55;
-      /* Gray 800 */
-      --color-line: 51 65 85;
-      /* Slate 700 - Líneas Azuladas Suaves */
-      --color-toggle: 15 23 42;
-      /* Slate 900 - Fondo Toggle Oscuro */
-    }
-
-    body.theme-comer {
-      /* Comer - Warm Gray/Orangeish */
-      --color-background: 31 25 22;
-      /* Warm Dark Background */
-      --color-surface: 55 44 39;
-      /* Warm Surface */
-      /* Adjusted for softer contrast, similar to Slate 700 */
-      --color-line: 82 70 65;
-      /* Stone/Warm Brown - Líneas Cálidas Suaves */
-      /* Adjusted for dark neutral warm, similar to Slate 900 */
-      --color-toggle: 23 18 15;
-      /* Very Dark Warm Gray - Fondo Toggle Oscuro */
-    }
-
-    body {
-      background-color: rgb(var(--color-background));
-      color: #F9FAFB;
-      font-family: 'Nunito', sans-serif;
-      overscroll-behavior-y: none;
-      /* Prevent pull-to-refresh on mobile */
-      transition: background-color 0.3s ease;
-    }
-
-    /* Hide scrollbar for clean UI */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Nunito', 'sans-serif'],
-          },
-          colors: {
-            background: 'rgb(var(--color-background) / <alpha-value>)',
-            surface: 'rgb(var(--color-surface) / <alpha-value>)',
-            line: 'rgb(var(--color-line) / <alpha-value>)',
-            toggle: 'rgb(var(--color-toggle) / <alpha-value>)',
-            textMain: '#F9FAFB',   // Gray 50
-            textSec: '#9CA3AF',    // Gray 400
-            planes: '#60A5FA',     // Blue 400
-            comer: '#FB923C',      // Orange 400
-          }
-        }
-      }
-    }
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900;1000&display=swap" rel="stylesheet">
   <script type="importmap">
 {
@@ -97,7 +28,7 @@
   }
 }
 </script>
-  <link rel="stylesheet" href="/index.css">
+
 </head>
 
 <body>

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
+
 
 // Reset navigation to start from the Welcome screen
 window.location.hash = '/';
